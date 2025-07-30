@@ -1,0 +1,70 @@
+# -- Basic container image
+image:
+  repository: model-service
+  tag: latest
+  pullPolicy: IfNotPresent
+
+# -- Number of pods
+replicaCount: 1
+
+service:
+  port: 80
+
+# -- Service account (required by serviceaccount.yaml template)
+serviceAccount:
+  create: true
+  name: ""
+
+# -- Ingress config (optional, enable if you want to access via browser)
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  hosts:
+    - host: model.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: [] # Add self-signed cert if you want
+
+# -- Resource requests/limits for local Docker Desktop K8s
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 250m
+    memory: 256Mi
+
+# -- Health checks
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+# -- Horizontal Pod Autoscaler (disabled for now)
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 3
+  targetCPUUtilizationPercentage: 80
+
+# -- Volumes and mounts (skip unless needed)
+volumes: []
+volumeMounts: []
+
+# -- Node scheduling (not needed for local Docker Desktop)
+nodeSelector: {}
+tolerations: []
+affinity: {}
+
