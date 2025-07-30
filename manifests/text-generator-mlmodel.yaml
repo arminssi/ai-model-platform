@@ -1,0 +1,9 @@
+apiVersion: ml.ml.armin.dev/v1alpha1
+kind: MLModelDeployment
+metadata:
+  name: text-generator
+  namespace: ml-models
+spec:
+  image: ghcr.io/arminssi/text-generator
+  replicas: 2
+  host: text-generator.local

@@ -22,7 +22,7 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
   hosts:
-    - host: model.local
+    - host: ""
       paths:
         - path: /
           pathType: Prefix

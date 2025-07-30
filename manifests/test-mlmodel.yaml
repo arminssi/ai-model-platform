@@ -1,0 +1,9 @@
+apiVersion: ml.ml.armin.dev/v1alpha1
+kind: MLModelDeployment
+metadata:
+  name: sample-model
+  namespace: ml-models
+spec:
+  image: nginx
+  replicas: 3
+  host: sample-model.local

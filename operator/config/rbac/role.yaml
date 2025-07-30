@@ -1,0 +1,32 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - ml.ml.armin.dev
+  resources:
+  - mlmodeldeployments
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ml.ml.armin.dev
+  resources:
+  - mlmodeldeployments/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - ml.ml.armin.dev
+  resources:
+  - mlmodeldeployments/status
+  verbs:
+  - get
+  - patch
+  - update

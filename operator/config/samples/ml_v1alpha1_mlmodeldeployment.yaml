@@ -1,0 +1,9 @@
+apiVersion: ml.ml.armin.dev/v1alpha1
+kind: MLModelDeployment
+metadata:
+  labels:
+    app.kubernetes.io/name: operator
+    app.kubernetes.io/managed-by: kustomize
+  name: mlmodeldeployment-sample
+spec:
+  # TODO(user): Add fields here
